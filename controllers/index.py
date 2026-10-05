@@ -41,20 +41,6 @@ class Index:
             else:
                 fila_normal.append(nuevo_ticket)
 
-        # Si el usuario hizo clic en "Atender Siguiente"
-        elif form.action == 'atender':
-            ticket_actual = None
-            if fila_prioritaria:
-                ticket_actual = fila_prioritaria.popleft()
-            elif fila_normal:
-                ticket_actual = fila_normal.popleft()
-
-            if ticket_actual:
-                estadisticas['atendidos'] += 1
-                estadisticas['tiempo_total'] += ticket_actual['tiempo']
-                estadisticas['ultimo_atendido'] = ticket_actual
-                if ticket_actual['prioridad'] == 'prioritaria':
-                    estadisticas['prioritarios'] += 1
 
         # Redirigimos a la misma página para recargar los datos
         raise web.seeother('/')
