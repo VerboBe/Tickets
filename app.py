@@ -1,7 +1,5 @@
 import web
 
-web.config.debug = False
-
 urls = (
     '/', 'controllers.index.Index'
 )
