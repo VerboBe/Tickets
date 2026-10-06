@@ -1,0 +1,113 @@
+$def with (fila_normal, fila_prioritaria, estadisticas)
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de turnos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Sistema de turnos</h1>
+
+    <section>
+        <h2>Registrar ticket</h2>
+        <form method="POST" action="/">
+            <input type="hidden" name="action" value="registrar">
+
+            <label>Cliente
+                <input type="text" name="cliente" required>
+            </label>
+
+            <label>Problema
+                <input type="text" name="problema" required>
+            </label>
+
+            <label>Prioridad
+                <select name="prioridad">
+                    <option value="normal">Normal</option>
+                    <option value="prioritaria">Prioritaria</option>
+                </select>
+            </label>
+
+            <label>Tiempo estimado (minutos)
+                <input type="number" name="tiempo" min="1" value="5" required>
+            </label>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Estadísticas</h2>
+        $ promedio = 0
+        $if estadisticas['atendidos'] > 0:
+        $ promedio = round(estadisticas['tiempo_total'] / estadisticas['atendidos'], 1)
+        <div class="stats">
+            <div><strong>$estadisticas['atendidos']</strong>Atendidos</div>
+            <div><strong>$promedio min</strong>Tiempo promedio</div>
+            <div><strong>$estadisticas['prioritarios']</strong>Prioritarios atendidos</div>
+            <div>
+                <strong>
+                    $if estadisticas['ultimo_atendido']:
+                    $estadisticas['ultimo_atendido']['cliente']
+                    $else:
+                    Ninguno
+                </strong>
+                Último atendido
+            </div>
+        </div>
+    </section>
+
+    <div class="filas">
+        <section class="prioritaria">
+            <h2>Fila prioritaria ($len(fila_prioritaria))</h2>
+            $if len(fila_prioritaria) == 0:
+            <p class="vacio">No hay tickets en espera.</p>
+            $else:
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Problema</th>
+                    <th>Min</th>
+                </tr>
+                $for t in fila_prioritaria:
+                <tr>
+                    <td>$t['id']</td>
+                    <td>$t['cliente']</td>
+                    <td>$t['problema']</td>
+                    <td>$t['tiempo']</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="normal">
+            <h2>Fila normal ($len(fila_normal))</h2>
+            $if len(fila_normal) == 0:
+            <p class="vacio">No hay tickets en espera.</p>
+            $else:
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Problema</th>
+                    <th>Min</th>
+                </tr>
+                $for t in fila_normal:
+                <tr>
+                    <td>$t['id']</td>
+                    <td>$t['cliente']</td>
+                    <td>$t['problema']</td>
+                    <td>$t['tiempo']</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+</body>
+
+</html>
