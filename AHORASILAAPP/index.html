@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets | Pollos Company</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="#">
+</head>
+
+<body>
+    <main class="formulario">
+        <header class="encabezado">
+            <p class="etiqueta-superior">Pollos Company</p>
+            <h1>ATENCIÓN AL CLIENTE EPICO</h1>
+        </header>
+
+        <form id="formulario-ticket">
+            <div class="campo">
+                <label for="numero-ticket">Número de ticket</label>
+                <input id="numero-ticket" name="numero-ticket" type="number" min="1" readonly required>
+            </div>
+
+            <div class="campo">
+                <label for="nombre-cliente">Nombre del cliente</label>
+                <input id="nombre-cliente" name="nombre-cliente" type="text" placeholder="Nombre completo" required>
+            </div>
+
+            <div class="campo">
+                <label for="tipo-problema">¿Qué problema experimenta el cliente?</label>
+                <textarea id="tipo-problema" name="tipo-problema" placeholder="Describe brevemente el problema"
+                    required></textarea>
+            </div>
+
+            <fieldset>
+                <legend>Prioridad</legend>
+                <div class="opciones-prioridad">
+                    <label class="opcion" for="prioridad-normal">
+                        <input id="prioridad-normal" name="prioridad" type="radio" value="normal" checked>
+                        Normal
+                    </label>
+                    <label class="opcion" for="prioridad-prioritaria">
+                        <input id="prioridad-prioritaria" name="prioridad" type="radio" value="prioritaria">
+                        Prioritaria
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="campo">
+                <label for="tiempo-estimado">Tiempo estimado</label>
+                <input id="tiempo-estimado" name="tiempo-estimado" type="number" min="1"
+                    placeholder="Minutos requeridos" required>
+            </div>
+
+            <button type="submit" class="boton-enviar">Guardar</button>
+            <button type="button" class="boton-atender-clientes" id="boton-atender-clientes">Atender clientes</button>
+            <p id="mensaje-guardado" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+
+</html>

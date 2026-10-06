@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atender clientes | Pollos Company</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="#">
+</head>
+
+<body>
+    <main class="formulario">
+        <header class="encabezado">
+            <p class="etiqueta-superior">Pollos Company</p>
+            <h1>Tickets por atender</h1>
+        </header>
+
+        <section id="lista-tickets" class="lista-tickets" aria-live="polite"></section>
+        <section class="panel-graficas" aria-label="Estadísticas de los tickets">
+            <section class="grafica-panel" aria-labelledby="titulo-grafica-prioridad">
+                <h2 id="titulo-grafica-prioridad">Tickets por prioridad</h2>
+                <div id="grafica-prioridades" class="grafica-columnas"></div>
+            </section>
+            <section class="grafica-panel" aria-labelledby="titulo-grafica-tiempos">
+                <h2 id="titulo-grafica-tiempos">Tiempo estimado</h2>
+                <div id="grafica-tiempos" class="grafica-pastel"></div>
+            </section>
+            <section class="grafica-panel" aria-labelledby="titulo-grafica-espera">
+                <h2 id="titulo-grafica-espera">Tiempo de espera</h2>
+                <div id="grafica-espera" class="grafica-linea"></div>
+            </section>
+        </section>
+        <a class="boton-volver" href="index.html">Volver al registro</a>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
