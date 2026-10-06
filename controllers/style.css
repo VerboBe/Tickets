@@ -1,111 +1,147 @@
- body {
-     font-family: Arial, sans-serif;
-     max-width: 900px;
-     margin: 0 auto;
-     padding: 20px;
-     color: #222;
-     background: #f5f5f5;
- }
+:root {
+    --fondo: #E4EBF7;
+    --fondo-secundario: #D2E0EF;
+    --color-3: #EDD9CB;
+    --color-4: #E6D7BD;
+    --importante: #E4D4C2;
+    --letras: #0f1822;
 
- h1 {
-     margin-bottom: 20px;
- }
 
- h2 {
-     margin-top: 0;
-     font-size: 18px;
- }
+    color-scheme: light;
+}
 
- section {
-     background: #fff;
-     border: 1px solid #ccc;
-     border-radius: 6px;
-     padding: 15px;
-     margin-bottom: 20px;
- }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--letras);
+    font-family: "Segoe UI", sans-serif;
+}
 
- label {
-     display: block;
-     margin-bottom: 10px;
-     font-size: 14px;
- }
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 48px 20px;
+    display: grid;
+    place-items: center;
+    background: var(--fondo);
+}
 
- input,
- select {
-     display: block;
-     width: 100%;
-     padding: 8px;
-     margin-top: 4px;
-     box-sizing: border-box;
-     border: 1px solid #aaa;
-     border-radius: 4px;
-     font-size: 14px;
- }
+.formulario {
+    width: min(100%, 1000px);
+    padding: 36px;
+    background: white;
+    border: 3px solid var(--importante);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgb(48 121 160 / 8%);
+}
 
- button {
-     padding: 10px 20px;
-     background: #1a5fb4;
-     color: #fff;
-     border: none;
-     border-radius: 4px;
-     cursor: pointer;
-     font-size: 14px;
- }
+.encabezado {
+    margin-bottom: 28px;
+}
 
- button:hover {
-     background: #144a8f;
- }
+.etiqueta-superior {
+    margin: 0 0 8px;
+    color: var(--importante);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
 
- .filas {
-     display: flex;
-     gap: 20px;
-     flex-wrap: wrap;
- }
+h1 {
+    margin: 0;
+    font-size: 27px;
+    font-weight: 650;
+}
 
- .filas section {
-     flex: 1;
-     min-width: 280px;
-     margin-bottom: 0;
- }
+.campo {
+    margin-bottom: 20px;
+}
 
- .prioritaria {
-     border-left: 5px solid #c01c28;
- }
+label,
+legend {
+    display: block;
+    margin-bottom: 8px;
+    color: #354b60;
+    font-size: 14px;
+    font-weight: 600;
+}
 
- .normal {
-     border-left: 5px solid #1a5fb4;
- }
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--importante);
+    border-radius: 6px;
+    background: white;
+    font-size: 15px;
+}
 
- table {
-     width: 100%;
-     border-collapse: collapse;
-     font-size: 14px;
- }
+input,
+select {
+    min-height: 44px;
+}
 
- th,
- td {
-     text-align: left;
-     padding: 6px;
-     border-bottom: 1px solid #ddd;
- }
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
 
- .vacio {
-     color: #777;
-     font-style: italic;
- }
+input::placeholder,
+textarea::placeholder {
+    color: var(--fondo-secundario);
+}
 
- .stats {
-     display: flex;
-     gap: 20px;
-     flex-wrap: wrap;
- }
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid var(--importante);
+    border-color: var(--fondo-secundario);
+}
 
- .stats div {
-     flex: 1;
-     min-width: 140px;
- }
+fieldset {
+    margin: 0 0 20px;
+    padding: 0;
+    border: 0;
+}
 
- .stats strong {
-     display: block;
-     font-size: 22px;
- }
+.opciones-prioridad {
+    display: flex;
+    gap: 12px;
+}
+
+.opcion {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 9px;
+    min-height: 44px;
+    margin: 0;
+    padding: 0 12px;
+    border: 1px solid var(--importante);
+    border-radius: 6px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.opcion input {
+    width: 16px;
+    min-height: 16px;
+    margin: 0;
+    accent-color: var(--importante);
+}
+
+.boton-enviar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--importante);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}

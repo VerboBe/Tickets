@@ -1,0 +1,17 @@
+{
+  "tickets": [
+    {
+      "id": 1,
+      "cliente": "1",
+      "problema": "no sé",
+      "prioridad": "prioritaria",
+      "tiempo": 10
+    }
+  ],
+  "estadisticas": {
+    "atendidos": 0,
+    "tiempo_total": 0,
+    "prioritarios": 0,
+    "ultimo_atendido": null
+  }
+}

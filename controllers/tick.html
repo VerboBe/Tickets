@@ -1,112 +1,59 @@
-<!--$def with (fila_normal, fila_prioritaria, estadisticas)-->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de turnos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tickets | Pollos Company</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/icono.ico">
 </head>
 
 <body>
+  <main class="formulario">
+    <header class="encabezado">
+      <p class="etiqueta-superior">Pollos Company</p>
+      <h1>TIENDA EPICA</h1>
+    </header>
 
-    <h1>Sistema de turnos</h1>
+    <form>
+      <div class="campo">
+        <label for="numero-ticket">Número de ticket</label>
+        <input id="numero-ticket" name="numero-ticket" type="text" placeholder="Número de ticket">
+      </div>
 
-    <section>
-        <h2>Registrar ticket</h2>
-        <form method="POST" action="/">
-            <input type="hidden" name="action" value="registrar">
+      <div class="campo">
+        <label for="nombre-cliente">Nombre del cliente</label>
+        <input id="nombre-cliente" name="nombre-cliente" type="text" placeholder="Nombre completo">
+      </div>
 
-            <label>Cliente
-                <input type="text" name="cliente" required>
-            </label>
+      <div class="campo">
+        <label for="tipo-problema">¿Qué problema experimenta el cliente?</label>
+        <textarea id="tipo-problema" name="tipo-problema" placeholder="Describe brevemente el problema"></textarea>
+      </div>
 
-            <label>Problema
-                <input type="text" name="problema" required>
-            </label>
+      <fieldset>
+        <legend>Prioridad</legend>
+        <div class="opciones-prioridad">
+          <label class="opcion" for="prioridad-normal">
+            <input id="prioridad-normal" name="prioridad" type="radio" value="normal" checked>
+            Normal
+          </label>
+          <label class="opcion" for="prioridad-prioritaria">
+            <input id="prioridad-prioritaria" name="prioridad" type="radio" value="prioritaria">
+            Prioritaria
+          </label>
+        </div>
+      </fieldset>
 
-            <label>Prioridad
-                <select name="prioridad">
-                    <option value="normal">Normal</option>
-                    <option value="prioritaria">Prioritaria</option>
-                </select>
-            </label>
+      <div class="campo">
+        <label for="tiempo-estimado">Tiempo estimado</label>
+        <input id="tiempo-estimado" name="tiempo-estimado" type="number" min="1" placeholder="Minutos requeridos">
+      </div>
 
-            <label>Tiempo estimado (minutos)
-                <input type="number" name="tiempo" min="1" value="5" required>
-            </label>
-
-            <button type="submit">Registrar</button>
-        </form>
-    </section>
-
-
-
-
-
-    <!--NO SÉ QUE HAGA ESTO
-    
-<section>
-  <h2>Estadísticas</h2>
-  $ promedio = 0
-  $if estadisticas['atendidos'] > 0:
-    $ promedio = round(estadisticas['tiempo_total'] / estadisticas['atendidos'], 1)
-  <div class="stats">
-    <div><strong>$estadisticas['atendidos']</strong>Atendidos</div>
-    <div><strong>$promedio min</strong>Tiempo promedio</div>
-    <div><strong>$estadisticas['prioritarios']</strong>Prioritarios atendidos</div>
-    <div>
-      <strong>
-        $if estadisticas['ultimo_atendido']:
-          $estadisticas['ultimo_atendido']['cliente']
-        $else:
-          Ninguno
-      </strong>
-      Último atendido
-    </div>
-  </div>
-</section>
- 
-<div class="filas">
-  <section class="prioritaria">
-    <h2>Fila prioritaria ($len(fila_prioritaria))</h2>
-    $if len(fila_prioritaria) == 0:
-      <p class="vacio">No hay tickets en espera.</p>
-    $else:
-      <table>
-        <tr><th>ID</th><th>Cliente</th><th>Problema</th><th>Min</th></tr>
-        $for t in fila_prioritaria:
-          <tr>
-            <td>$t['id']</td>
-            <td>$t['cliente']</td>
-            <td>$t['problema']</td>
-            <td>$t['tiempo']</td>
-          </tr>
-      </table>
-  </section>
- 
-  <section class="normal">
-    <h2>Fila normal ($len(fila_normal))</h2>
-    $if len(fila_normal) == 0:
-      <p class="vacio">No hay tickets en espera.</p>
-    $else:
-      <table>
-        <tr><th>ID</th><th>Cliente</th><th>Problema</th><th>Min</th></tr>
-        $for t in fila_normal:
-          <tr>
-            <td>$t['id']</td>
-            <td>$t['cliente']</td>
-            <td>$t['problema']</td>
-            <td>$t['tiempo']</td>
-          </tr>
-      </table>
-  </section>
-</div>
-    
-    
-    -->
-
+      <button type="submit" class="boton-enviar">Enviar</button>
+    </form>
+  </main>
 </body>
 
 </html>

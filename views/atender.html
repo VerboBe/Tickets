@@ -1,27 +1,53 @@
+$def with (tickets, estadisticas)
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tickets</title>
+    <title>Atención de tickets</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
     <header>
-        <div class="logo">
-            <img src="" alt="Aun no hay logo">
-        </div>
         <div class="options">
-            <a href="index.html">Registrar</a>
+            <a href="/">Registrar</a>
         </div>
     </header>
 
     <h1>SISTEMA DE ATENCIÓN DE TICKETS</h1>
 
-    <h2>Atender</h2>
+    <h2>Tickets pendientes</h2>
 
+    $if len(tickets) == 0:
+        <p>No hay tickets pendientes.</p>
+    $else:
+        <form method="POST" action="/atender">
+            <input type="hidden" name="action" value="atender">
+            <button type="submit">Atender siguiente</button>
+        </form>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Problema</th>
+                    <th>Prioridad</th>
+                    <th>Tiempo estimado (min)</th>
+                </tr>
+            </thead>
+            <tbody>
+                $for ticket in tickets:
+                    <tr>
+                        <td>$ticket['id']</td>
+                        <td>$ticket['cliente']</td>
+                        <td>$ticket['problema']</td>
+                        <td>$ticket['prioridad']</td>
+                        <td>$ticket['tiempo']</td>
+                    </tr>
+            </tbody>
+        </table>
 </body>
 </html>
