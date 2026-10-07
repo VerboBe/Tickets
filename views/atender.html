@@ -1,53 +1,73 @@
-$def with (tickets, estadisticas)
+$def with (fila_normal, fila_prioritaria, stats, time)
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atención de tickets</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Atender clientes | Pollos Company</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <main class="formulario">
+        <header class="encabezado">
+            <p class="etiqueta-superior">Pollos Company</p>
+            <h1>Tickets por atender</h1>
+        </header>
 
-
-    <header>
-        <div class="options">
-            <a href="/">Registrar</a>
-        </div>
-    </header>
-
-    <h1>SISTEMA DE ATENCIÓN DE TICKETS</h1>
-
-    <h2>Tickets pendientes</h2>
-
-    $if len(tickets) == 0:
-        <p>No hay tickets pendientes.</p>
-    $else:
-        <form method="POST" action="/atender">
-            <input type="hidden" name="action" value="atender">
-            <button type="submit">Atender siguiente</button>
+        <!-- Botón principal centralizado que respeta la regla FIFO -->
+        <form method="POST" style="margin-bottom: 20px; display: flex; justify-content: center;">
+            <button type="submit" class="boton-enviar" style="width: auto; padding: 10px 20px;">🛠️ Atender Siguiente Ticket</button>
         </form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Problema</th>
-                    <th>Prioridad</th>
-                    <th>Tiempo estimado (min)</th>
-                </tr>
-            </thead>
-            <tbody>
-                $for ticket in tickets:
-                    <tr>
-                        <td>$ticket['id']</td>
-                        <td>$ticket['cliente']</td>
-                        <td>$ticket['problema']</td>
-                        <td>$ticket['prioridad']</td>
-                        <td>$ticket['tiempo']</td>
-                    </tr>
-            </tbody>
-        </table>
+        <section id="lista-tickets" class="lista-tickets">
+            $if not fila_prioritaria and not fila_normal:
+                <p style="text-align: center; color: #666;">Todavía no hay tickets registrados en espera.</p>
+            
+            <!-- Lista de Prioritarios -->
+            $for ticket in fila_prioritaria:
+                <article class="ticket">
+                    <h2>Ticket $ticket['id']</h2>
+                    <div class="acciones-ticket">
+                        <span class="etiqueta-prioridad prioritaria">Prioritaria</span>
+                    </div>
+                    <p class="detalles-ticket">
+                        Cliente: $ticket['cliente']<br>
+                        Problema: $ticket['problema']<br>
+                        Tiempo estimado: $ticket['tiempo'] minutos<br>
+                        <br>
+                        <strong>Esperando:</strong> $int((time.time() - ticket['registro']) / 60) min
+                    </p>
+                </article>
+
+            <!-- Lista de Normales -->
+            $for ticket in fila_normal:
+                <article class="ticket">
+                    <h2>Ticket $ticket['id']</h2>
+                    <div class="acciones-ticket">
+                        <span class="etiqueta-prioridad normal">Normal</span>
+                    </div>
+                    <p class="detalles-ticket">
+                        Cliente: $ticket['cliente']<br>
+                        Problema: $ticket['problema']<br>
+                        Tiempo estimado: $ticket['tiempo'] minutos<br>
+                        <br>
+                        <strong>Esperando:</strong> $int((time.time() - ticket['registro']) / 60) min
+                    </p>
+                </article>
+        </section>
+
+        <!-- Sección de Estadísticas -->
+        <section class="panel-graficas" style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+            <h2 id="titulo-grafica-prioridad" style="font-size: 1.4rem; margin-bottom: 10px;">Estadísticas del Servidor</h2>
+            <ul style="list-style: none; padding: 0; line-height: 1.8; color: #333;">
+                <li><strong>Total Atendidos (Histórico):</strong> $stats['atendidos']</li>
+                <li><strong>Atendidos Prioritarios:</strong> $stats['prioritarios']</li>
+                $if stats['ultimo_atendido']:
+                    <li><strong>Último cliente despachado:</strong> Ticket $stats['ultimo_atendido']['id'] ($stats['ultimo_atendido']['cliente'])</li>
+            </ul>
+        </section>
+
+        <a class="boton-volver" href="/">Volver al registro</a>
+    </main>
 </body>
 </html>

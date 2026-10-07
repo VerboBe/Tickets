@@ -2,7 +2,7 @@ import web
 
 urls = (
     '/', 'controllers.index.Index',
-    '/atender', 'controllers.index.Atender'
+    '/atender', 'controllers.atender.Atender'
 )
 
 app = web.application(urls, globals())

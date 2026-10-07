@@ -1,40 +1,56 @@
-$def with (fila_normal, fila_prioritaria, stats)
-<!-- 
- name="action": Le dice a Python qué formulario enviaste 
-    value="registrar" para agregar un ticket nuevo, o 
-    value="atender" para sacar al siguiente cliente de la fila).
-
-name="cliente": Captura el nombre de la persona.
-
-name="problema": Captura el texto con la descripción del fallo.
-
-name="prioridad": Identifica la opción que se eligio en el menú desplegable (normal o prioritaria).
-
-name="tiempo": Captura el número con los minutos estimados.
-    En el archivo index.py, la instrucción form = web.input() busca estos nombres para guardar la información.
- -->
+$def with (siguiente_id)
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tickets</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tickets | Pollos Company</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <main class="formulario">
+        <header class="encabezado">
+            <p class="etiqueta-superior">Pollos Company</p>
+            <h1>ATENCIÓN AL CLIENTE EPICO</h1>
+        </header>
 
-    <header>
-        <div class="logo">
-            <img src="" alt="Aun no hay logo">
-        </div>
-        <div class="options">
-            <a href="atender.html">Atender</a>
-        </div>
-    </header>
+        <form method="POST" id="formulario-ticket">
+            <div class="campo">
+                <label for="numero-ticket">Número de ticket</label>
+                <!-- Usamos $siguiente_id para que Python ponga el número correcto -->
+                <input id="numero-ticket" name="numero-ticket" type="number" value="$siguiente_id" readonly required>
+            </div>
 
-    <h1>SISTEMA DE ATENCIÓN DE TICKETS</h1>
+            <div class="campo">
+                <label for="nombre-cliente">Nombre del cliente</label>
+                <input id="nombre-cliente" name="nombre-cliente" type="text" placeholder="Nombre completo" required>
+            </div>
 
-    <h2>Registrar</h2>
+            <div class="campo">
+                <label for="tipo-problema">¿Qué problema experimenta el cliente?</label>
+                <textarea id="tipo-problema" name="tipo-problema" placeholder="Describe brevemente el problema" required></textarea>
+            </div>
 
+            <fieldset>
+                <legend>Prioridad</legend>
+                <div class="opciones-prioridad">
+                    <label class="opcion" for="prioridad-normal">
+                        <input id="prioridad-normal" name="prioridad" type="radio" value="normal" checked> Normal
+                    </label>
+                    <label class="opcion" for="prioridad-prioritaria">
+                        <input id="prioridad-prioritaria" name="prioridad" type="radio" value="prioritaria"> Prioritaria
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="campo">
+                <label for="tiempo-estimado">Tiempo estimado</label>
+                <input id="tiempo-estimado" name="tiempo-estimado" type="number" min="1" placeholder="Minutos requeridos" required>
+            </div>
+
+            <button type="submit" class="boton-enviar">Guardar</button>
+            <button type="button" class="boton-atender-clientes" onclick="window.location.href='/atender'">Atender clientes</button>        
+        </form>
+    </main>
 </body>
 </html>
