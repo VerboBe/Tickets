@@ -23,4 +23,4 @@ class Atender:
             if ticket_actual['prioridad'] == 'prioritaria':
                 estadisticas['prioritarios'] += 1
 
-        raise web.seeother('/atender')
+        return self.GET()

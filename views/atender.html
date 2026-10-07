@@ -14,7 +14,6 @@ $def with (fila_normal, fila_prioritaria, stats, time)
             <h1>Tickets por atender</h1>
         </header>
 
-        <!-- Botón principal centralizado que respeta la regla FIFO -->
         <form method="POST" style="margin-bottom: 20px; display: flex; justify-content: center;">
             <button type="submit" class="boton-enviar" style="width: auto; padding: 10px 20px;">🛠️ Atender Siguiente Ticket</button>
         </form>
@@ -23,7 +22,6 @@ $def with (fila_normal, fila_prioritaria, stats, time)
             $if not fila_prioritaria and not fila_normal:
                 <p style="text-align: center; color: #666;">Todavía no hay tickets registrados en espera.</p>
             
-            <!-- Lista de Prioritarios -->
             $for ticket in fila_prioritaria:
                 <article class="ticket">
                     <h2>Ticket $ticket['id']</h2>
@@ -39,7 +37,6 @@ $def with (fila_normal, fila_prioritaria, stats, time)
                     </p>
                 </article>
 
-            <!-- Lista de Normales -->
             $for ticket in fila_normal:
                 <article class="ticket">
                     <h2>Ticket $ticket['id']</h2>
@@ -56,7 +53,6 @@ $def with (fila_normal, fila_prioritaria, stats, time)
                 </article>
         </section>
 
-        <!-- Sección de Estadísticas -->
         <section class="panel-graficas" style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
             <h2 id="titulo-grafica-prioridad" style="font-size: 1.4rem; margin-bottom: 10px;">Estadísticas del Servidor</h2>
             <ul style="list-style: none; padding: 0; line-height: 1.8; color: #333;">
